@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
 function Login() {
+
   const navigate = useNavigate()
 
   const [username, setUsername] = useState("")
@@ -10,29 +11,71 @@ function Login() {
   const [message, setMessage] = useState("")
 
   const handleLogin = async () => {
+
     try {
+
+      setMessage("Logging in...")
+
+      console.log("Sending login request")
+
       const res = await axios.post(
         "https://baba-casino-production.up.railway.app/api/auth/login",
         {
           username,
           password
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          timeout: 10000
         }
       )
 
+      console.log("SUCCESS:", res.data)
+
       setMessage("LOGIN SUCCESSFUL 🎉")
-      localStorage.setItem("user", JSON.stringify(res.data.user))
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(res.data.user)
+      )
 
       setTimeout(() => {
         navigate("/dashboard")
-      }, 2000)
+      }, 1500)
 
     } catch (error) {
-      setMessage(error.response?.data?.message || "Login Failed")
+
+      console.log("FULL ERROR:", error)
+
+      if (error.response) {
+
+        console.log("ERROR RESPONSE:", error.response.data)
+
+        setMessage(
+          error.response.data.message || "Login Failed"
+        )
+
+      } else if (error.request) {
+
+        setMessage("Server not responding")
+
+      } else {
+
+        setMessage(error.message)
+
+      }
+
     }
+
   }
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-black select-none font-sans antialiased">
+
+    <div
+      className="relative w-screen h-screen overflow-hidden bg-black select-none font-sans antialiased"
+    >
 
       {/* BACKGROUND VIDEO */}
       <video
@@ -45,84 +88,80 @@ function Login() {
         <source src="/videos/bg.mp4" type="video/mp4" />
       </video>
 
-      {/* DARK TRANSPARENT OVERLAY */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-[3px] pointer-events-none z-0"></div>
+      {/* OVERLAY */}
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-[3px] z-0"></div>
 
-      {/* BRANDING LOGO */}
+      {/* LOGO */}
       <div className="absolute top-8 left-10 z-20">
         <img
           src="/images/logo.png"
           alt="logo"
           className="w-44"
-          onError={(e) => { e.target.style.display = "none" }}
         />
       </div>
 
-      {/* CENTER POSITIONING BOX MAIN LAYER */}
+      {/* MAIN */}
       <div className="relative z-10 flex items-center justify-center w-full h-full px-6">
 
-        {/* LOGIN BOX PANEL WITH FORCED INTERNAL PADDING */}
-        <div 
+        <div
           className="bg-black/50 border-[3px] border-yellow-400 rounded-[45px] backdrop-blur-xl shadow-[0_0_80px_rgba(255,215,0,0.35)] flex flex-col justify-between"
-          style={{ width: '650px', padding: '50px 40px', boxSizing: 'border-box' }}
+          style={{
+            width: "650px",
+            padding: "50px 40px",
+            boxSizing: "border-box"
+          }}
         >
 
-          {/* PREMIUM HEADER TITLE */}
-          <h1 className="text-6xl font-black text-center uppercase tracking-wide" style={{ marginBottom: '45px' }}>
+          {/* TITLE */}
+          <h1
+            className="text-6xl font-black text-center uppercase tracking-wide"
+            style={{ marginBottom: "45px" }}
+          >
             <span className="text-white">VIP</span>
-            <span className="text-yellow-400 ml-4 drop-shadow-[0_0_20px_rgba(250,204,21,0.4)]">LOGIN</span>
+
+            <span className="text-yellow-400 ml-4">
+              LOGIN
+            </span>
           </h1>
 
-          {/* CONTROL INPUT ACTIONS SECTION */}
+          {/* INPUTS */}
           <div className="w-full flex flex-col">
 
-            {/* USERNAME INPUT WITH STRICT INLINE PADDING SHIFTS */}
             <input
               type="text"
               placeholder="USERNAME"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              style={{ 
-                paddingLeft: '35px', 
-                paddingRight: '35px', 
-                marginBottom: '25px',
-                boxSizing: 'border-box'
-              }}
-              className="w-full h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-[25px] text-white text-3xl font-black outline-none focus:border-yellow-400 shadow-[0_0_30px_rgba(255,215,0,0.15)] placeholder:text-zinc-500 tracking-wide uppercase transition-all"
+              className="w-full h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-[25px] text-white text-3xl font-black outline-none px-8 mb-6 uppercase"
             />
 
-            {/* PASSWORD INPUT WITH STRICT INLINE PADDING SHIFTS */}
             <input
               type="password"
               placeholder="PASSWORD"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{ 
-                paddingLeft: '35px', 
-                paddingRight: '35px', 
-                marginBottom: '25px',
-                boxSizing: 'border-box'
-              }}
-              className="w-full h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-[25px] text-white text-3xl font-black outline-none focus:border-yellow-400 shadow-[0_0_30px_rgba(255,215,0,0.15)] placeholder:text-zinc-500 tracking-wide uppercase transition-all"
+              className="w-full h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-[25px] text-white text-3xl font-black outline-none px-8 mb-6 uppercase"
             />
 
-            {/* STATUS EVENT MESSAGE LOGGER */}
+            {/* MESSAGE */}
             {message && (
-              <p className="text-center text-2xl text-yellow-400 font-black tracking-wide bg-yellow-400/10 border border-yellow-400/20 py-2 rounded-xl mb-5 animate-pulse">
+
+              <p className="text-center text-2xl text-yellow-400 font-black bg-yellow-400/10 py-3 rounded-xl mb-5">
                 {message}
               </p>
+
             )}
 
-            {/* PRIMARY INTERACTION LOGIN SUBMIT ACTION BUTTON */}
+            {/* BUTTON */}
             <button
               onClick={handleLogin}
-              className="w-full h-[100px] flex items-center justify-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black text-4xl font-black rounded-[30px] border-[3px] border-yellow-200 shadow-[0_5px_40px_rgba(255,215,0,0.4)] hover:scale-[1.02] active:scale-98 transition duration-300 tracking-widest uppercase"
-              style={{ marginBottom: '20px' }}
+              className="w-full h-[100px] flex items-center justify-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black text-4xl font-black rounded-[30px] border-[3px] border-yellow-200 hover:scale-[1.02] transition duration-300 tracking-widest uppercase"
+              style={{ marginBottom: "20px" }}
             >
               LOGIN
             </button>
 
-            {/* ROUTING REDIRECTION ACTION LINK TO BACK HOME */}
+            {/* BACK */}
             <button
               onClick={() => navigate("/")}
               className="w-full text-zinc-400 hover:text-yellow-400 text-xl font-black tracking-widest uppercase transition-colors py-2 text-center"
@@ -137,7 +176,9 @@ function Login() {
       </div>
 
     </div>
+
   )
+
 }
 
 export default Login
