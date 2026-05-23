@@ -12,7 +12,7 @@ function Login() {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "https://baba-casino-production.up.railway.app",
+        "https://baba-casino-production.up.railway.app/api/auth/login",
         {
           username,
           password
