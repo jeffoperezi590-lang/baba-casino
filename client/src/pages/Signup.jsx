@@ -37,7 +37,7 @@ function Signup() {
           src="/images/qr.png"
           alt="QR"
           className="w-64 sm:w-72 rounded-2xl border-4 border-yellow-400 shadow-[0_0_40px_rgba(255,215,0,0.5)] mb-6 sm:mb-8 transition-transform duration-300 hover:scale-[1.02]"
-          onError={(e) => { e.target.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://wa.me/923496049566" }}
+          onError={(e) => { e.target.src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://wa.me/923407479740" }}
         />
 
         {/* DESCRIPTIVE TEXT */}
