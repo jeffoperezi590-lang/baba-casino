@@ -56,7 +56,7 @@ function Dashboard() {
       <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 backdrop-blur-xl py-3.5 flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center gap-2 sm:gap-3">
           <img src="/images/logo.png" alt="Baba Casino" className="h-7 sm:h-9 object-contain" onError={(e) => e.target.style.display = 'none'} />
-          <span className="text-md sm:text-xl font-black tracking-wider text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.4)]">BABA CASINO</span>
+          <span className="text-md sm:text-xl font-black tracking-wider text-yellow-400">BABA CASINO</span>
         </div>
         <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400 font-bold">
           <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -64,16 +64,19 @@ function Dashboard() {
         </div>
       </header>
 
-      {/* MAIN LAYOUT */}
+      {/* MAIN CONTAINER LAYOUT */}
       <main className="relative z-10 w-full flex-grow flex flex-col px-4 sm:px-10 pt-4 sm:pt-6">
 
-        {/* PROFILE BLOCK SYSTEM (FORCE ROW STABLE EXTENSION) */}
-        <div className="w-full bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl mb-10">
+        {/* PROFILE BLOCK SYSTEM (EXPLICIT BOTTOM SPACER MARGIN) */}
+        <div 
+          className="w-full bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl"
+          style={{ marginBottom: '40px' }}
+        >
           <div className="w-full flex flex-row items-center justify-between gap-2">
             
-            {/* LEFT PROFILE GROUP */}
+            {/* LEFT PROFILE INFO */}
             <div className="flex items-center gap-2 sm:gap-5 min-w-0">
-              <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-yellow-500 via-amber-400 to-yellow-300 flex items-center justify-center text-black text-md sm:text-3xl font-black shadow-[0_0_25px_rgba(245,158,11,0.3)] shrink-0">
+              <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-yellow-500 via-amber-400 to-yellow-300 flex items-center justify-center text-black text-md sm:text-3xl font-black shrink-0">
                 {user ? user.username?.charAt(0).toUpperCase() : "U"}
               </div>
               <div className="flex flex-col min-w-0">
@@ -88,7 +91,7 @@ function Dashboard() {
               </div>
             </div>
 
-            {/* RIGHT BALANCE BLOCK (FORCED NAME KE SAMNE IN ROW FLUIDITY) */}
+            {/* RIGHT BALANCE DISPLAY */}
             <div className="flex items-center gap-2 sm:gap-4 shrink-0">
               <div className="flex flex-col items-end sm:items-start gap-0.5">
                 <p className="text-zinc-400 text-[8px] sm:text-[11px] font-black tracking-widest uppercase">Balance</p>
@@ -108,8 +111,11 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* MID NAVBAR (EXTRA FORCED GAP BOTTOM TO DETACH FROM FIRST GAME CARD) */}
-        <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-14">
+        {/* MID NAVBAR (DEEP ABSOLUTE HARD MARGIN BEFORE GAMES LIST MATRIX) */}
+        <div 
+          className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md"
+          style={{ marginBottom: '55px' }}
+        >
           {["HOME", "INCOME", "WITHDRAW"].map((tab) => (
             <button
               key={tab}
@@ -123,7 +129,7 @@ function Dashboard() {
           ))}
         </div>
 
-        {/* GAMES MATRIX GRID */}
+        {/* CARDS SYSTEM MATRIX GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {gamesList.map((game) => (
             <div key={game.id} className="group bg-zinc-900/90 border-2 border-zinc-800/80 hover:border-yellow-400 rounded-3xl p-4 sm:p-5 flex flex-col justify-between shadow-2xl transition-all duration-300 backdrop-blur-sm">
@@ -149,6 +155,7 @@ function Dashboard() {
             </div>
           ))}
         </div>
+
       </main>
 
       <footer className="relative z-20 w-full bg-zinc-950/95 border-t border-zinc-800/80 text-center text-[10px] sm:text-[11px] text-zinc-500 tracking-wider font-semibold py-4 mt-auto">

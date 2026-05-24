@@ -37,7 +37,7 @@ function Income() {
     >
       <div className="absolute inset-0 bg-black/40 pointer-events-none z-0"></div>
 
-      {/* FIXED UNIFIED HEADER */}
+      {/* HEADER WITH FIXED BADGES */}
       <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 backdrop-blur-xl py-3.5 flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center gap-2 sm:gap-3">
           <img src="/images/logo.png" alt="Baba Casino" className="h-7 sm:h-9 object-contain" onError={(e) => e.target.style.display = 'none'} />
@@ -49,34 +49,45 @@ function Income() {
         </div>
       </header>
 
-      {/* MAIN CONTAINER */}
+      {/* MAIN LAYOUT */}
       <main className="relative z-10 w-full flex-grow flex flex-col px-4 sm:px-10 pt-4 sm:pt-6">
 
-        {/* TITLE PROFILE OVERVIEW BANNER */}
-        <div className="w-full flex flex-row justify-between items-center bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl mb-5 sm:mb-6">
-          <div className="flex items-center gap-2 sm:gap-5">
-            <h1 className="text-lg sm:text-4xl font-black tracking-wide uppercase">
-              <span className="text-white">INCOME </span>
-              <span className="text-yellow-400">HISTORY</span>
-            </h1>
-          </div>
-          <div className="flex flex-col items-end sm:items-start gap-0.5">
-            <p className="text-zinc-400 text-[8px] sm:text-[11px] font-black tracking-widest uppercase">Wallet</p>
-            <div className="bg-gradient-to-r from-yellow-500 to-amber-400 text-black px-2.5 sm:px-7 py-1 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-xl font-black">
-              PKR {user ? user.balance?.toLocaleString() : "0"}
+        {/* TITLE BANNER ROW */}
+        <div 
+          className="w-full bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl"
+          style={{ marginBottom: '35px' }}
+        >
+          <div className="w-full flex flex-row items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-5 min-w-0">
+              <h1 className="text-lg sm:text-4xl font-black tracking-wide uppercase truncate">
+                <span className="text-white">INCOME </span>
+                <span className="text-yellow-400">HISTORY</span>
+              </h1>
+            </div>
+            <div className="flex flex-col items-end sm:items-start gap-0.5 shrink-0">
+              <p className="text-zinc-400 text-[8px] sm:text-[11px] font-black tracking-widest uppercase">Wallet</p>
+              <div className="bg-gradient-to-r from-yellow-500 to-amber-400 text-black px-3.5 sm:px-7 py-1 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-xl font-black">
+                PKR {user ? user.balance?.toLocaleString() : "0"}
+              </div>
             </div>
           </div>
         </div>
 
-        {/* 👑 FIX 1: MID NAVBAR TO TOTAL DEPOSIT BOX (DEEP VERTICAL MARGIN GAP) */}
-        <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-12">
+        {/* 👑 FIX 1: MID NAVBAR SEPARATION (STRICT 45PX BOTTOM MARGIN) */}
+        <div 
+          className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md"
+          style={{ marginBottom: '45px' }}
+        >
           {["HOME", "INCOME", "WITHDRAW"].map((tab) => (
             <button key={tab} onClick={() => handleTabClick(tab)} className={`flex-1 rounded-lg sm:rounded-xl text-xs sm:text-xl font-black tracking-widest transition-all duration-300 py-3 sm:py-3.5 ${activeTab === tab ? "bg-gradient-to-r from-yellow-500 to-amber-400 text-black shadow-lg" : "text-zinc-400 hover:text-white"}`}>{tab}</button>
           ))}
         </div>
 
-        {/* 👑 FIX 2: TOTAL WIN BOX TO TYPE HEADING BOX (STRONG DETACHMENT GAP) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-12">
+        {/* 👑 FIX 2: TOTAL WIN BOXES SEPARATION (STRICT 50PX BOTTOM MARGIN DETACHMENT FROM TABLE) */}
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
+          style={{ marginBottom: '50px' }}
+        >
           <div className="bg-zinc-900/95 border-2 border-zinc-800/80 rounded-xl sm:rounded-2xl py-4 px-6 shadow-2xl flex flex-col justify-center">
             <p className="text-zinc-400 text-[10px] sm:text-[11px] font-black tracking-widest uppercase mb-0.5">Total Deposit</p>
             <h2 className="text-lg sm:text-2xl font-black text-yellow-400 tracking-wide">PKR 500</h2>
@@ -91,8 +102,11 @@ function Income() {
           </div>
         </div>
 
-        {/* 👑 FIX 3: TYPE TABLE DATA CONTAINER TO GRAPHICAL SECTION (CRITICAL HIGH MARGIN) */}
-        <div className="bg-zinc-900/90 border-2 border-zinc-800/70 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm mb-16 overflow-x-auto w-full">
+        {/* 👑 FIX 3: DATA GRID VIEW SEPARATION (STRICT 55PX BOTTOM MARGIN DETACHMENT FROM GRAPH) */}
+        <div 
+          className="bg-zinc-900/90 border-2 border-zinc-800/70 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm overflow-x-auto w-full"
+          style={{ marginBottom: '55px' }}
+        >
           <div className="min-w-[480px] sm:w-full">
             <div className="grid grid-cols-3 bg-gradient-to-r from-yellow-500 to-amber-400 text-black text-xs sm:text-lg font-black py-3 px-4 sm:px-6">
               <div>TYPE</div><div>AMOUNT</div><div>STATUS</div>
@@ -109,7 +123,7 @@ function Income() {
           </div>
         </div>
 
-        {/* ANALYSIS GRAPH BOX */}
+        {/* ANALYTICAL RE-CHART GRAPH */}
         <div className="w-full bg-zinc-900/90 border-2 border-zinc-800/70 rounded-2xl p-5 shadow-2xl mb-12">
           <p className="text-zinc-400 text-[10px] sm:text-xs font-black tracking-widest uppercase mb-5 text-left pl-1">Earnings Analysis Graph</p>
           <div className="w-full flex items-end justify-between h-36 px-2 border-b border-zinc-800/80 pb-2 gap-3">
@@ -123,7 +137,6 @@ function Income() {
         </div>
 
       </main>
-      
       <footer className="relative z-20 w-full bg-zinc-950/95 border-t border-zinc-800/80 text-center text-[10px] sm:text-[11px] text-zinc-500 py-4 mt-auto">&copy; {new Date().getFullYear()} Baba Casino.</footer>
     </div>
   )

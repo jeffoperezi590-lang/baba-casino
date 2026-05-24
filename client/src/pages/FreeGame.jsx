@@ -32,11 +32,11 @@ function FreeGame() {
          style={{ backgroundImage: "url('/images/dashboard-bg.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#0d0e12" }}>
       <div className="absolute inset-0 bg-black/50 pointer-events-none z-0"></div>
 
-      {/* HEADER BAR WITH LOGO */}
+      {/* HEADER */}
       <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 backdrop-blur-xl py-3.5 flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center gap-2 sm:gap-3">
           <img src="/images/logo.png" alt="Baba Casino" className="h-7 sm:h-9 object-contain" onError={(e) => e.target.style.display = 'none'} />
-          <span className="text-md sm:text-xl font-black tracking-wider text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.4)]">BABA CASINO</span>
+          <span className="text-md sm:text-xl font-black tracking-wider text-yellow-400">BABA CASINO</span>
         </div>
         <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400 font-bold">
           <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -44,11 +44,11 @@ function FreeGame() {
         </div>
       </header>
 
-      {/* MAIN LAYOUT CONTAINER */}
+      {/* MAIN CONTAINER LAYOUT */}
       <main className="relative z-10 w-full flex-grow flex items-center justify-center px-4 sm:px-8 py-6">
         <div className="w-full max-w-md bg-zinc-900/90 border-2 border-zinc-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl text-center box-border">
           
-          {/* TITLE HEAD (GAP EXTENDED FOR SUB-WHEEL SYSTEM) */}
+          {/* TITLE HEAD */}
           <h1 className="text-2xl sm:text-4xl font-black text-yellow-400 tracking-wide uppercase mb-10">🎰 CLASSIC SLOTS</h1>
 
           {/* THREE WHEEL SLOT EMOJI CONTAINERS */}
@@ -60,12 +60,12 @@ function FreeGame() {
             ))}
           </div>
 
-          {/* STATUS EVENT LOGGER WITH BREATHING SPACE MARGINS */}
+          {/* STATUS LOGGER */}
           <div className="text-md sm:text-xl font-black tracking-wide text-amber-500 min-h-[28px] my-6">
             {message}
           </div>
 
-          {/* ACTIONS INTERACTION SECTION (SPACED WELL APART) */}
+          {/* ACTIONS INTERACTION SECTION */}
           <div className="flex flex-col gap-4 w-full mt-8">
             <button 
               onClick={spin} 

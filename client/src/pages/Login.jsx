@@ -49,7 +49,7 @@ function Login() {
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-black font-sans antialiased flex items-center justify-center px-4 sm:px-6">
+    <div className="relative min-h-screen w-full overflow-hidden bg-black font-sans antialiased flex items-center justify-center px-4">
       
       {/* BACKGROUND VIDEO */}
       <video autoPlay muted loop playsInline className="absolute inset-0 h-full w-full object-cover scale-110">
@@ -58,22 +58,28 @@ function Login() {
       <div className="absolute inset-0 bg-black/75 backdrop-blur-[3px]" />
 
       {/* BRANDING LOGO */}
-      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-20">
+      <div className="absolute top-6 left-6 sm:top-8 sm:left-8 z-20">
         <img src="/images/logo.png" alt="logo" className="w-24 sm:w-44" />
       </div>
 
-      {/* BOX CONTROLLER (STRICT STRUCTURAL PADDING ADJUSTED FOR RESPONSIVE GAPS) */}
-      <div className="relative z-10 w-full max-w-[650px] bg-black/55 border-[3px] border-yellow-400 rounded-[35px] sm:rounded-[45px] backdrop-blur-xl shadow-[0_0_80px_rgba(255,215,0,0.35)] box-border p-8 sm:p-14">
+      {/* 👑 OUTER BOX CONTROLLER (STRICT STRUCTURAL INTERNAL PADDING CONTROL) */}
+      <div 
+        className="relative z-10 w-full max-w-[650px] bg-black/55 border-[3px] border-yellow-400 rounded-[35px] sm:rounded-[45px] backdrop-blur-xl shadow-[0_0_80px_rgba(255,215,0,0.35)] box-border"
+        style={{ padding: '50px 0px' }} // Top/Bottom padding keep wide, Left/Right handled by child
+      >
         
-        {/* TITLE HEAD (ADDED STRONG BOTTOM MARGIN FOR SEPARATION FROM FIRST INPUT) */}
-        <h1 className="text-center font-black uppercase tracking-wide text-4xl sm:text-6xl mb-10 sm:mb-16">
+        {/* TITLE HEAD */}
+        <h1 
+          className="text-center font-black uppercase tracking-wide text-4xl sm:text-6xl"
+          style={{ marginBottom: '40px' }}
+        >
           <span className="text-white">VIP</span> <span className="text-yellow-400 ml-3">LOGIN</span>
         </h1>
 
-        {/* 👑 INPUT AREA WITH EXTRA DEEP STRUCTURAL GAP TO PREVENT OVERLAPPING */}
-        <div className="flex flex-col gap-6 sm:gap-[32px] w-full">
+        {/* 👑 FIX: WRAPPER DIV WITH FORCED SIDE PADDINGS TO PUSH INPUT BORDERS AWAY FROM OUTER BOX BORDER */}
+        <div className="w-full flex flex-col px-6 sm:px-12 box-border">
           
-          {/* USERNAME INPUT WITH ENFORCED INLINE INNER PADDING SHIFTS */}
+          {/* USERNAME INPUT */}
           <input
             type="text"
             placeholder="USERNAME"
@@ -81,14 +87,15 @@ function Login() {
             onChange={(e) => setUsername(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleLogin()}
             style={{ 
-              paddingLeft: '32px', 
-              paddingRight: '32px',
+              paddingLeft: '28px', 
+              paddingRight: '28px',
+              marginBottom: '24px',
               boxSizing: 'border-box'
             }}
-            className="w-full h-16 sm:h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-xl sm:rounded-[25px] text-white text-xl sm:text-3xl font-black outline-none placeholder:text-zinc-500 uppercase tracking-wide transition-all focus:border-yellow-400"
+            className="w-full h-16 sm:h-[90px] bg-black/70 border-[3px] border-yellow-400/80 rounded-xl sm:rounded-[22px] text-white text-xl sm:text-3xl font-black outline-none placeholder:text-zinc-500 uppercase tracking-wide focus:border-yellow-400"
           />
 
-          {/* PASSWORD INPUT WITH ENFORCED INLINE INNER PADDING SHIFTS */}
+          {/* PASSWORD INPUT */}
           <input
             type="password"
             placeholder="PASSWORD"
@@ -96,24 +103,29 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleLogin()}
             style={{ 
-              paddingLeft: '32px', 
-              paddingRight: '32px',
+              paddingLeft: '28px', 
+              paddingRight: '28px',
+              marginBottom: '24px',
               boxSizing: 'border-box'
             }}
-            className="w-full h-16 sm:h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-xl sm:rounded-[25px] text-white text-xl sm:text-3xl font-black outline-none placeholder:text-zinc-500 uppercase tracking-wide transition-all focus:border-yellow-400"
+            className="w-full h-16 sm:h-[90px] bg-black/70 border-[3px] border-yellow-400/80 rounded-xl sm:rounded-[22px] text-white text-xl sm:text-3xl font-black outline-none placeholder:text-zinc-500 uppercase tracking-wide focus:border-yellow-400"
           />
 
           {message && (
-            <div className="w-full bg-yellow-400/10 border border-yellow-400/20 rounded-xl py-3.5 px-4 my-2">
+            <div 
+              className="w-full bg-yellow-400/10 border border-yellow-400/20 rounded-xl py-3 px-4"
+              style={{ marginBottom: '20px' }}
+            >
               <p className="text-center text-yellow-400 font-black text-md sm:text-2xl tracking-wide">{message}</p>
             </div>
           )}
 
-          {/* SUBMIT BUTTON WITH EXTRA SEPARATION SPACE */}
+          {/* SUBMIT BUTTON */}
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full h-14 sm:h-[100px] flex items-center justify-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black text-xl sm:text-4xl font-black rounded-xl sm:rounded-[30px] border-[3px] border-yellow-200 hover:scale-[1.02] active:scale-[0.99] transition duration-300 tracking-widest uppercase shadow-[0_0_30px_rgba(255,215,0,0.4)] disabled:opacity-70 mt-6 sm:mt-[36px]"
+            className="w-full h-14 sm:h-[95px] flex items-center justify-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black text-xl sm:text-4xl font-black rounded-xl sm:rounded-[25px] border-[3px] border-yellow-200 shadow-[0_0_30px_rgba(255,215,0,0.4)] disabled:opacity-70 uppercase tracking-widest"
+            style={{ marginTop: '12px', marginBottom: '20px' }}
           >
             {loading ? "PLEASE WAIT..." : "LOGIN"}
           </button>
@@ -121,7 +133,7 @@ function Login() {
           {/* REDIRECTION */}
           <button
             onClick={() => navigate("/")}
-            className="w-full text-zinc-400 hover:text-yellow-400 text-sm sm:text-xl font-black tracking-widest uppercase transition-colors pt-3"
+            className="w-full text-zinc-400 hover:text-yellow-400 text-sm sm:text-xl font-black tracking-widest uppercase transition-colors py-2 text-center"
           >
             BACK TO HOME
           </button>
