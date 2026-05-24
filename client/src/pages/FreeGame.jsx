@@ -15,48 +15,85 @@ function FreeGame() {
   const spin = () => {
     if (balance <= 0) { return }
     let s1, s2, s3
-    do { s1 = randomSymbol(); s2 = randomSymbol(); s3 = randomSymbol(); } while (s1 === s2 && s2 === s3)
+    // Allow winning configurations but handle continuous logic
+    s1 = randomSymbol(); s2 = randomSymbol(); s3 = randomSymbol();
     setSlot1(s1); setSlot2(s2); setSlot3(s3);
+    
     setBalance((prev) => prev - 50)
-    if (balance - 50 <= 0) setMessage("Game Over 💀")
-    else setMessage("❌ No Win! Try Again")
+    
+    if (s1 === s2 && s2 === s3) {
+      setMessage("🎉 BIG WIN! AMAZING!")
+    } else if (balance - 50 <= 0) {
+      setMessage("Game Over 💀")
+    } else {
+      setMessage("❌ No Win! Try Again")
+    }
   }
 
   return (
     <div className="w-full h-screen overflow-y-auto relative font-sans antialiased text-white select-none flex flex-col justify-between"
          style={{ backgroundImage: "url('/images/dashboard-bg.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#0d0e12" }}>
-      <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-black/50 pointer-events-none z-0"></div>
 
-      {/* HEADER */}
-      <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 py-4 flex items-center justify-between px-6 sm:px-10">
-        <div className="flex items-center gap-2"><span className="text-md sm:text-xl font-black text-yellow-400">BABA CASINO</span></div>
-        <div className="text-xs text-zinc-400 font-bold">Server Live</div>
+      {/* 👑 FIXED UNIFIED HEADER BAR WITH LOGO IMAGE (MATCHED WITH ALL PAGES) */}
+      <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 backdrop-blur-xl py-3.5 flex items-center justify-between px-4 sm:px-10">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <img src="/images/logo.png" alt="Baba Casino" className="h-7 sm:h-9 object-contain" onError={(e) => e.target.style.display = 'none'} />
+          <span className="text-md sm:text-xl font-black tracking-wider text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.4)]">BABA CASINO</span>
+        </div>
+        <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400 font-bold">
+          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Server Live
+        </div>
       </header>
 
       {/* MAIN LAYOUT */}
-      <main className="relative z-10 w-full flex-grow flex flex-col items-center justify-center px-4 sm:px-8 py-6">
-        <div className="w-full max-w-md bg-zinc-900/90 border-2 border-zinc-800/80 rounded-3xl px-5 sm:px-8 pb-8 shadow-2xl text-center" style={{ paddingTop: '40px' }}>
-          <h1 className="text-3xl sm:text-4xl font-black text-yellow-400 tracking-wide uppercase mb-8">🎰 CLASSIC SLOTS</h1>
+      <main className="relative z-10 w-full flex-grow flex items-center justify-center px-4 sm:px-8 py-6">
+        <div className="w-full max-w-md bg-zinc-900/90 border-2 border-zinc-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl text-center box-border">
+          
+          {/* TITLE HEAD WITH CONTROLLED MARGIN */}
+          <h1 className="text-2xl sm:text-4xl font-black text-yellow-400 tracking-wide uppercase mb-6 sm:mb-10">🎰 CLASSIC SLOTS</h1>
 
           {/* THREE WHEEL SLOT EMOJI CONTAINERS */}
-          <div className="flex justify-center gap-3 sm:gap-4 w-full mb-8">
+          <div className="flex justify-center gap-3 sm:gap-4 w-full mb-6 sm:mb-8">
             {[slot1, slot2, slot3].map((slot, i) => (
-              <div key={i} className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-xl flex items-center justify-center text-4xl sm:text-5xl shadow-xl select-none">
-                <span className="block mt-[-1px]">{slot}</span>
+              <div key={i} className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-xl flex items-center justify-center text-4xl sm:text-5xl shadow-xl border-b-4 border-zinc-300 select-none">
+                <span className="block">{slot}</span>
               </div>
             ))}
           </div>
 
-          <div className="flex flex-col gap-4 w-full" style={{ marginTop: '25px' }}>
-            <button onClick={spin} disabled={balance <= 0} className={`w-full py-3.5 rounded-xl text-sm font-black tracking-widest uppercase shadow-md ${balance <= 0 ? "bg-zinc-800 text-zinc-500" : "bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black"}`}>SPIN</button>
-            <button onClick={() => navigate("/dashboard")} className="w-full bg-zinc-950/80 text-zinc-400 border border-zinc-800 py-3 rounded-xl text-xs font-black tracking-widest">BACK TO DASHBOARD</button>
+          {/* STATUS MESSAGE EVENT CONTAINER WITH SOLID VERTICAL MARGIN SEPARATION */}
+          <div className="text-md sm:text-xl font-black tracking-wide text-amber-500 min-h-[28px] my-4 sm:my-6">
+            {message}
           </div>
 
-          <div className="mt-6 text-lg font-black tracking-wide text-amber-500">{message}</div>
+          {/* CONTROL INTERACTION ACTION BUTTON SECTION (ADDED CRITICAL SPACING) */}
+          <div className="flex flex-col gap-4 w-full mt-6 sm:mt-8">
+            <button 
+              onClick={spin} 
+              disabled={balance <= 0} 
+              className={`w-full py-3.5 rounded-xl text-sm font-black tracking-widest uppercase shadow-md transition-all duration-200 active:scale-98 ${
+                balance <= 0 ? "bg-zinc-800 text-zinc-500 cursor-not-allowed" : "bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black hover:brightness-110"
+              }`}
+            >
+              SPIN (-50 PKR)
+            </button>
+            
+            <button 
+              onClick={() => navigate("/dashboard")} 
+              className="w-full bg-zinc-950/80 hover:bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 py-3 rounded-xl text-xs font-black tracking-widest uppercase transition-colors"
+            >
+              BACK TO DASHBOARD
+            </button>
+          </div>
+
         </div>
       </main>
 
-      <footer className="w-full bg-zinc-950/95 border-t border-zinc-800/80 text-center text-[10px] text-zinc-500 py-4">&copy; {new Date().getFullYear()} Baba Casino.</footer>
+      <footer className="relative z-20 w-full bg-zinc-950/95 border-t border-zinc-800/80 text-center text-[10px] sm:text-[11px] text-zinc-500 py-4 mt-auto">
+        &copy; {new Date().getFullYear()} Baba Casino. All Rights Reserved.
+      </footer>
     </div>
   )
 }

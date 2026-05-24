@@ -67,8 +67,8 @@ function Dashboard() {
       {/* MAIN LAYOUT */}
       <main className="relative z-10 w-full flex-grow flex flex-col px-4 sm:px-10 pt-4 sm:pt-6">
 
-        {/* 👑 BALANCE FIXED NEXT TO NAME ON MOBILE (FORCE INLINE) */}
-        <div className="w-full bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl mb-5 sm:mb-6">
+        {/* 👑 1. PROFILE CONTAINER (ADDED MARGIN BOTTOM FOR COMFORTABLE NAVBAR SEPARATION) */}
+        <div className="w-full bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl mb-8 sm:mb-10">
           <div className="w-full flex flex-row items-center justify-between gap-2">
             
             {/* LEFT PROFILE GROUP */}
@@ -88,7 +88,7 @@ function Dashboard() {
               </div>
             </div>
 
-            {/* RIGHT BALANCE BLOCK (FORCED RIGHT SIDE WITH LOGOUT) */}
+            {/* RIGHT BALANCE BLOCK */}
             <div className="flex items-center gap-2 sm:gap-4 shrink-0">
               <div className="flex flex-col items-end sm:items-start gap-0.5">
                 <p className="text-zinc-400 text-[8px] sm:text-[11px] font-black tracking-widest uppercase sm:pl-1">Balance</p>
@@ -99,7 +99,7 @@ function Dashboard() {
 
               <button
                 onClick={handleLogout}
-                className="bg-zinc-950/80 hover:bg-rose-600/20 text-zinc-400 hover:text-rose-400 border border-zinc-800 hover:border-rose-500/40 px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl text-[9px] sm:text Red-sm font-black tracking-widest uppercase transition-all duration-300 active:scale-95 shadow-md"
+                className="bg-zinc-950/80 hover:bg-rose-600/20 text-zinc-400 hover:text-rose-400 border border-zinc-800 hover:border-rose-500/40 px-2 sm:px-5 py-1.5 sm:py-2.5 rounded-lg sm:rounded-xl text-[9px] sm:text-sm font-black tracking-widest uppercase transition-all duration-300 active:scale-95 shadow-md"
               >
                 Exit
               </button>
@@ -108,8 +108,8 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* MID NAVBAR */}
-        <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-8 sm:mb-10">
+        {/* 👑 2. MID NAVBAR (ADDED EXTRA DEEP SPACING GAP TO SEPARATE FROM GAMES MATRIX) */}
+        <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-12 sm:mb-14">
           {["HOME", "INCOME", "WITHDRAW"].map((tab) => (
             <button
               key={tab}
@@ -123,8 +123,8 @@ function Dashboard() {
           ))}
         </div>
 
-        {/* 👑 CARDS GRID SYSTEM (ADDED CRITICAL TOP PADDING / SPACING GAP TO PREVENT MERGING) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 pt-4 mb-8 sm:mb-12">
+        {/* 3. CARDS GRID SYSTEM */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {gamesList.map((game) => (
             <div key={game.id} className="group bg-zinc-900/90 border-2 border-zinc-800/80 hover:border-yellow-400 rounded-3xl p-4 sm:p-5 flex flex-col justify-between shadow-2xl transition-all duration-300 backdrop-blur-sm">
               <div>
