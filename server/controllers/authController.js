@@ -8,11 +8,16 @@ const loginUser = async (req, res) => {
 
     // REMOVE SPACES + MAKE LOWERCASE
     username = username.trim().toLowerCase()
+    password = password.trim()
+
+    console.log("LOGIN USERNAME:", username)
 
     // FIND USER
     const user = await User.findOne({
       username: username
     })
+
+    console.log("FOUND USER:", user)
 
     // USER NOT FOUND
     if (!user) {
