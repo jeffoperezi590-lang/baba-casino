@@ -67,8 +67,8 @@ function Dashboard() {
       {/* MAIN LAYOUT */}
       <main className="relative z-10 w-full flex-grow flex flex-col px-4 sm:px-10 pt-4 sm:pt-6">
 
-        {/* 👑 1. PROFILE CONTAINER (ADDED MARGIN BOTTOM FOR COMFORTABLE NAVBAR SEPARATION) */}
-        <div className="w-full bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl mb-8 sm:mb-10">
+        {/* PROFILE BLOCK SYSTEM (FORCE ROW STABLE EXTENSION) */}
+        <div className="w-full bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl mb-10">
           <div className="w-full flex flex-row items-center justify-between gap-2">
             
             {/* LEFT PROFILE GROUP */}
@@ -88,10 +88,10 @@ function Dashboard() {
               </div>
             </div>
 
-            {/* RIGHT BALANCE BLOCK */}
+            {/* RIGHT BALANCE BLOCK (FORCED NAME KE SAMNE IN ROW FLUIDITY) */}
             <div className="flex items-center gap-2 sm:gap-4 shrink-0">
               <div className="flex flex-col items-end sm:items-start gap-0.5">
-                <p className="text-zinc-400 text-[8px] sm:text-[11px] font-black tracking-widest uppercase sm:pl-1">Balance</p>
+                <p className="text-zinc-400 text-[8px] sm:text-[11px] font-black tracking-widest uppercase">Balance</p>
                 <div className="bg-gradient-to-r from-yellow-500 to-amber-400 text-black px-2.5 sm:px-7 py-1 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-2xl font-black tracking-wider shadow-md">
                   PKR {user ? user.balance?.toLocaleString() : "0"}
                 </div>
@@ -108,8 +108,8 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* 👑 2. MID NAVBAR (ADDED EXTRA DEEP SPACING GAP TO SEPARATE FROM GAMES MATRIX) */}
-        <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-12 sm:mb-14">
+        {/* MID NAVBAR (EXTRA FORCED GAP BOTTOM TO DETACH FROM FIRST GAME CARD) */}
+        <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-14">
           {["HOME", "INCOME", "WITHDRAW"].map((tab) => (
             <button
               key={tab}
@@ -123,7 +123,7 @@ function Dashboard() {
           ))}
         </div>
 
-        {/* 3. CARDS GRID SYSTEM */}
+        {/* GAMES MATRIX GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {gamesList.map((game) => (
             <div key={game.id} className="group bg-zinc-900/90 border-2 border-zinc-800/80 hover:border-yellow-400 rounded-3xl p-4 sm:p-5 flex flex-col justify-between shadow-2xl transition-all duration-300 backdrop-blur-sm">

@@ -37,7 +37,7 @@ function Income() {
     >
       <div className="absolute inset-0 bg-black/40 pointer-events-none z-0"></div>
 
-      {/* HEADER */}
+      {/* FIXED UNIFIED HEADER */}
       <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 backdrop-blur-xl py-3.5 flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center gap-2 sm:gap-3">
           <img src="/images/logo.png" alt="Baba Casino" className="h-7 sm:h-9 object-contain" onError={(e) => e.target.style.display = 'none'} />
@@ -52,7 +52,7 @@ function Income() {
       {/* MAIN CONTAINER */}
       <main className="relative z-10 w-full flex-grow flex flex-col px-4 sm:px-10 pt-4 sm:pt-6">
 
-        {/* PROFILE/TITLE ROW */}
+        {/* TITLE PROFILE OVERVIEW BANNER */}
         <div className="w-full flex flex-row justify-between items-center bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-3 sm:p-5 shadow-2xl backdrop-blur-xl mb-5 sm:mb-6">
           <div className="flex items-center gap-2 sm:gap-5">
             <h1 className="text-lg sm:text-4xl font-black tracking-wide uppercase">
@@ -68,15 +68,15 @@ function Income() {
           </div>
         </div>
 
-        {/* MID NAVBAR (ADDED MARGIN BOTTOM FOR EXTRA BOX SPACING) */}
-        <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-10 sm:mb-12">
+        {/* 👑 FIX 1: MID NAVBAR TO TOTAL DEPOSIT BOX (DEEP VERTICAL MARGIN GAP) */}
+        <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-12">
           {["HOME", "INCOME", "WITHDRAW"].map((tab) => (
             <button key={tab} onClick={() => handleTabClick(tab)} className={`flex-1 rounded-lg sm:rounded-xl text-xs sm:text-xl font-black tracking-widest transition-all duration-300 py-3 sm:py-3.5 ${activeTab === tab ? "bg-gradient-to-r from-yellow-500 to-amber-400 text-black shadow-lg" : "text-zinc-400 hover:text-white"}`}>{tab}</button>
           ))}
         </div>
 
-        {/* 3 SLIM COMPACT CARDS ROW (ADDED MARGIN BOTTOM TO DETACH FROM DATA TABLE) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-12">
+        {/* 👑 FIX 2: TOTAL WIN BOX TO TYPE HEADING BOX (STRONG DETACHMENT GAP) */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-12">
           <div className="bg-zinc-900/95 border-2 border-zinc-800/80 rounded-xl sm:rounded-2xl py-4 px-6 shadow-2xl flex flex-col justify-center">
             <p className="text-zinc-400 text-[10px] sm:text-[11px] font-black tracking-widest uppercase mb-0.5">Total Deposit</p>
             <h2 className="text-lg sm:text-2xl font-black text-yellow-400 tracking-wide">PKR 500</h2>
@@ -91,8 +91,8 @@ function Income() {
           </div>
         </div>
 
-        {/* DATA TABLE CONTAINER (ADDED EXTRA DEEP SPACING AT BOTTOM BEFORE CHART GRAPH) */}
-        <div className="bg-zinc-900/90 border-2 border-zinc-800/70 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm mb-12 sm:mb-16 overflow-x-auto w-full">
+        {/* 👑 FIX 3: TYPE TABLE DATA CONTAINER TO GRAPHICAL SECTION (CRITICAL HIGH MARGIN) */}
+        <div className="bg-zinc-900/90 border-2 border-zinc-800/70 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl backdrop-blur-sm mb-16 overflow-x-auto w-full">
           <div className="min-w-[480px] sm:w-full">
             <div className="grid grid-cols-3 bg-gradient-to-r from-yellow-500 to-amber-400 text-black text-xs sm:text-lg font-black py-3 px-4 sm:px-6">
               <div>TYPE</div><div>AMOUNT</div><div>STATUS</div>
@@ -109,7 +109,7 @@ function Income() {
           </div>
         </div>
 
-        {/* ANALYSIS GRAPH */}
+        {/* ANALYSIS GRAPH BOX */}
         <div className="w-full bg-zinc-900/90 border-2 border-zinc-800/70 rounded-2xl p-5 shadow-2xl mb-12">
           <p className="text-zinc-400 text-[10px] sm:text-xs font-black tracking-widest uppercase mb-5 text-left pl-1">Earnings Analysis Graph</p>
           <div className="w-full flex items-end justify-between h-36 px-2 border-b border-zinc-800/80 pb-2 gap-3">

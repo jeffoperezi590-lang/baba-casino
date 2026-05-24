@@ -62,16 +62,16 @@ function Login() {
         <img src="/images/logo.png" alt="logo" className="w-24 sm:w-44" />
       </div>
 
-      {/* BOX CONTROLLER (FLUID MAX BOUNDS) */}
-      <div className="relative z-10 w-full max-w-[650px] bg-black/55 border-[3px] border-yellow-400 rounded-[35px] sm:rounded-[45px] backdrop-blur-xl shadow-[0_0_80px_rgba(255,215,0,0.35)] box-border p-8 sm:p-12">
+      {/* BOX CONTROLLER (STRICT STRUCTURAL PADDING ADJUSTED FOR RESPONSIVE GAPS) */}
+      <div className="relative z-10 w-full max-w-[650px] bg-black/55 border-[3px] border-yellow-400 rounded-[35px] sm:rounded-[45px] backdrop-blur-xl shadow-[0_0_80px_rgba(255,215,0,0.35)] box-border p-8 sm:p-14">
         
-        {/* TITLE HEAD */}
-        <h1 className="text-center font-black uppercase tracking-wide text-4xl sm:text-6xl mb-8 sm:mb-12">
+        {/* TITLE HEAD (ADDED STRONG BOTTOM MARGIN FOR SEPARATION FROM FIRST INPUT) */}
+        <h1 className="text-center font-black uppercase tracking-wide text-4xl sm:text-6xl mb-10 sm:mb-16">
           <span className="text-white">VIP</span> <span className="text-yellow-400 ml-3">LOGIN</span>
         </h1>
 
-        {/* INPUT AREA WITH EXPANDED VERTICAL GAP */}
-        <div className="flex flex-col gap-6 sm:gap-8 w-full">
+        {/* 👑 INPUT AREA WITH EXTRA DEEP STRUCTURAL GAP TO PREVENT OVERLAPPING */}
+        <div className="flex flex-col gap-6 sm:gap-[32px] w-full">
           
           {/* USERNAME INPUT WITH ENFORCED INLINE INNER PADDING SHIFTS */}
           <input
@@ -104,16 +104,16 @@ function Login() {
           />
 
           {message && (
-            <div className="w-full bg-yellow-400/10 border border-yellow-400/20 rounded-xl py-3 px-4 mt-2">
+            <div className="w-full bg-yellow-400/10 border border-yellow-400/20 rounded-xl py-3.5 px-4 my-2">
               <p className="text-center text-yellow-400 font-black text-md sm:text-2xl tracking-wide">{message}</p>
             </div>
           )}
 
-          {/* SUBMIT BUTTON WITH EXTRA TOP MARGIN FOR GAP BALANCE */}
+          {/* SUBMIT BUTTON WITH EXTRA SEPARATION SPACE */}
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full h-14 sm:h-[100px] flex items-center justify-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black text-xl sm:text-4xl font-black rounded-xl sm:rounded-[30px] border-[3px] border-yellow-200 hover:scale-[1.02] active:scale-[0.99] transition duration-300 tracking-widest uppercase shadow-[0_0_30px_rgba(255,215,0,0.4)] disabled:opacity-70 mt-4"
+            className="w-full h-14 sm:h-[100px] flex items-center justify-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black text-xl sm:text-4xl font-black rounded-xl sm:rounded-[30px] border-[3px] border-yellow-200 hover:scale-[1.02] active:scale-[0.99] transition duration-300 tracking-widest uppercase shadow-[0_0_30px_rgba(255,215,0,0.4)] disabled:opacity-70 mt-6 sm:mt-[36px]"
           >
             {loading ? "PLEASE WAIT..." : "LOGIN"}
           </button>
@@ -121,7 +121,7 @@ function Login() {
           {/* REDIRECTION */}
           <button
             onClick={() => navigate("/")}
-            className="w-full text-zinc-400 hover:text-yellow-400 text-sm sm:text-xl font-black tracking-widest uppercase transition-colors pt-2"
+            className="w-full text-zinc-400 hover:text-yellow-400 text-sm sm:text-xl font-black tracking-widest uppercase transition-colors pt-3"
           >
             BACK TO HOME
           </button>

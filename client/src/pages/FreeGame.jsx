@@ -7,24 +7,21 @@ function FreeGame() {
   const [slot1, setSlot1] = useState("🍒")
   const [slot2, setSlot2] = useState("🍋")
   const [slot3, setSlot3] = useState("⭐")
-  const [balance, setBalance] = useState(1000)
   const [message, setMessage] = useState("Try your luck 😄")
 
   const randomSymbol = () => symbols[Math.floor(Math.random() * symbols.length)]
 
   const spin = () => {
-    if (balance <= 0) { return }
-    let s1, s2, s3
-    // Allow winning configurations but handle continuous logic
-    s1 = randomSymbol(); s2 = randomSymbol(); s3 = randomSymbol();
-    setSlot1(s1); setSlot2(s2); setSlot3(s3);
+    let s1 = randomSymbol()
+    let s2 = randomSymbol()
+    let s3 = randomSymbol()
     
-    setBalance((prev) => prev - 50)
+    setSlot1(s1)
+    setSlot2(s2)
+    setSlot3(s3)
     
     if (s1 === s2 && s2 === s3) {
       setMessage("🎉 BIG WIN! AMAZING!")
-    } else if (balance - 50 <= 0) {
-      setMessage("Game Over 💀")
     } else {
       setMessage("❌ No Win! Try Again")
     }
@@ -35,7 +32,7 @@ function FreeGame() {
          style={{ backgroundImage: "url('/images/dashboard-bg.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#0d0e12" }}>
       <div className="absolute inset-0 bg-black/50 pointer-events-none z-0"></div>
 
-      {/* 👑 FIXED UNIFIED HEADER BAR WITH LOGO IMAGE (MATCHED WITH ALL PAGES) */}
+      {/* HEADER BAR WITH LOGO */}
       <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 backdrop-blur-xl py-3.5 flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center gap-2 sm:gap-3">
           <img src="/images/logo.png" alt="Baba Casino" className="h-7 sm:h-9 object-contain" onError={(e) => e.target.style.display = 'none'} />
@@ -47,15 +44,15 @@ function FreeGame() {
         </div>
       </header>
 
-      {/* MAIN LAYOUT */}
+      {/* MAIN LAYOUT CONTAINER */}
       <main className="relative z-10 w-full flex-grow flex items-center justify-center px-4 sm:px-8 py-6">
         <div className="w-full max-w-md bg-zinc-900/90 border-2 border-zinc-800/80 rounded-3xl p-6 sm:p-10 shadow-2xl text-center box-border">
           
-          {/* TITLE HEAD WITH CONTROLLED MARGIN */}
-          <h1 className="text-2xl sm:text-4xl font-black text-yellow-400 tracking-wide uppercase mb-6 sm:mb-10">🎰 CLASSIC SLOTS</h1>
+          {/* TITLE HEAD (GAP EXTENDED FOR SUB-WHEEL SYSTEM) */}
+          <h1 className="text-2xl sm:text-4xl font-black text-yellow-400 tracking-wide uppercase mb-10">🎰 CLASSIC SLOTS</h1>
 
           {/* THREE WHEEL SLOT EMOJI CONTAINERS */}
-          <div className="flex justify-center gap-3 sm:gap-4 w-full mb-6 sm:mb-8">
+          <div className="flex justify-center gap-3 sm:gap-4 w-full mb-8">
             {[slot1, slot2, slot3].map((slot, i) => (
               <div key={i} className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-xl flex items-center justify-center text-4xl sm:text-5xl shadow-xl border-b-4 border-zinc-300 select-none">
                 <span className="block">{slot}</span>
@@ -63,21 +60,18 @@ function FreeGame() {
             ))}
           </div>
 
-          {/* STATUS MESSAGE EVENT CONTAINER WITH SOLID VERTICAL MARGIN SEPARATION */}
-          <div className="text-md sm:text-xl font-black tracking-wide text-amber-500 min-h-[28px] my-4 sm:my-6">
+          {/* STATUS EVENT LOGGER WITH BREATHING SPACE MARGINS */}
+          <div className="text-md sm:text-xl font-black tracking-wide text-amber-500 min-h-[28px] my-6">
             {message}
           </div>
 
-          {/* CONTROL INTERACTION ACTION BUTTON SECTION (ADDED CRITICAL SPACING) */}
-          <div className="flex flex-col gap-4 w-full mt-6 sm:mt-8">
+          {/* ACTIONS INTERACTION SECTION (SPACED WELL APART) */}
+          <div className="flex flex-col gap-4 w-full mt-8">
             <button 
               onClick={spin} 
-              disabled={balance <= 0} 
-              className={`w-full py-3.5 rounded-xl text-sm font-black tracking-widest uppercase shadow-md transition-all duration-200 active:scale-98 ${
-                balance <= 0 ? "bg-zinc-800 text-zinc-500 cursor-not-allowed" : "bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black hover:brightness-110"
-              }`}
+              className="w-full py-4 bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black rounded-xl text-sm font-black tracking-widest uppercase shadow-md transition-all duration-200 active:scale-98 hover:brightness-110"
             >
-              SPIN (-50 PKR)
+              SPIN GAME
             </button>
             
             <button 
