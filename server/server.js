@@ -7,12 +7,19 @@ const connectDB = require("./config/db")
 
 const app = express()
 
+// Connect Database
 connectDB()
 
-// 👑 CORS FIXED: Apne live domain ko securely allow karein
+// 👑 CORS FIXED: Yeh aapke live frontend domain ko backend se connect karega
 app.use(cors({
-  origin: ["https://babacasino.online", "https://www.babacasino.online"],
-  credentials: true
+  origin: [
+    "https://babacasino.online", 
+    "https://www.babacasino.online",
+    "http://localhost:5173" // Local testing ke liye
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }))
 
 app.use(express.json())
