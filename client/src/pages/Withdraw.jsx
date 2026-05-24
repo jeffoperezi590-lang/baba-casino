@@ -21,12 +21,16 @@ function Withdraw() {
          style={{ backgroundImage: "url('/images/dashboard-bg.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#0d0e12" }}>
       <div className="absolute inset-0 bg-black/40 pointer-events-none z-0"></div>
 
-      {/* HEADER BRANDING */}
-      <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 py-4 flex items-center justify-between px-4 sm:px-10">
-        <div className="flex items-center gap-3">
-          <span className="text-lg sm:text-xl font-black tracking-wider text-yellow-400">BABA CASINO</span>
+      {/* 👑 FIXED UNIFIED HEADER BAR WITH LOGO IMAGE */}
+      <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 backdrop-blur-xl py-3.5 flex items-center justify-between px-4 sm:px-10">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <img src="/images/logo.png" alt="Baba Casino" className="h-7 sm:h-9 object-contain" onError={(e) => e.target.style.display = 'none'} />
+          <span className="text-md sm:text-xl font-black tracking-wider text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.4)]">BABA CASINO</span>
         </div>
-        <div className="text-xs sm:text-sm text-zinc-400 font-bold">Server Live</div>
+        <div className="flex items-center gap-2 text-xs sm:text-sm text-zinc-400 font-bold">
+          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Server Live
+        </div>
       </header>
 
       <main className="relative z-10 w-full flex-grow flex flex-col px-4 sm:px-10 pt-4 sm:pt-6">
@@ -39,7 +43,7 @@ function Withdraw() {
         {/* NAV ROUTERS */}
         <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl mb-6 sm:mb-8">
           {["HOME", "INCOME", "WITHDRAW"].map((tab) => (
-            <button key={tab} onClick={() => handleTabClick(tab)} className={`flex-1 rounded-lg sm:rounded-xl text-xs sm:text-xl font-black tracking-widest py-3 sm:py-3.5 ${activeTab === tab ? "bg-gradient-to-r from-yellow-500 to-amber-400 text-black" : "text-zinc-400"}`}>{tab}</button>
+            <button key={tab} onClick={() => handleTabClick(tab)} className={`flex-1 rounded-lg sm:rounded-xl text-xs sm:text-xl font-black tracking-widest py-3 sm:py-3.5 transition-all duration-300 ${activeTab === tab ? "bg-gradient-to-r from-yellow-500 to-amber-400 text-black shadow-lg" : "text-zinc-400 hover:text-white"}`}>{tab}</button>
           ))}
         </div>
 
@@ -80,7 +84,7 @@ function Withdraw() {
           </div>
         </div>
       </main>
-      <footer className="w-full bg-zinc-950/95 border-t border-zinc-800/80 text-center text-[10px] sm:text-[11px] text-zinc-500 py-4">&copy; {new Date().getFullYear()} Baba Casino.</footer>
+      <footer className="w-full bg-zinc-950/95 border-t border-zinc-800/80 text-center text-[10px] sm:text-[11px] text-zinc-500 py-4">&copy; {new Date().getFullYear()} Baba Casino. All Rights Reserved.</footer>
     </div>
   )
 }

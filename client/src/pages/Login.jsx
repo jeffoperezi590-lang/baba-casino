@@ -63,45 +63,57 @@ function Login() {
       </div>
 
       {/* BOX CONTROLLER (FLUID MAX BOUNDS) */}
-      <div className="relative z-10 w-full max-w-[650px] bg-black/55 border-[3px] border-yellow-400 rounded-[35px] sm:rounded-[45px] backdrop-blur-xl shadow-[0_0_80px_rgba(255,215,0,0.35)] box-border p-6 sm:p-12">
+      <div className="relative z-10 w-full max-w-[650px] bg-black/55 border-[3px] border-yellow-400 rounded-[35px] sm:rounded-[45px] backdrop-blur-xl shadow-[0_0_80px_rgba(255,215,0,0.35)] box-border p-8 sm:p-12">
         
         {/* TITLE HEAD */}
-        <h1 className="text-center font-black uppercase tracking-wide text-4xl sm:text-6xl mb-6 sm:mb-10">
+        <h1 className="text-center font-black uppercase tracking-wide text-4xl sm:text-6xl mb-8 sm:mb-12">
           <span className="text-white">VIP</span> <span className="text-yellow-400 ml-3">LOGIN</span>
         </h1>
 
-        <div className="flex flex-col gap-4 sm:gap-6 w-full">
-          {/* USERNAME */}
+        {/* INPUT AREA WITH EXPANDED VERTICAL GAP */}
+        <div className="flex flex-col gap-6 sm:gap-8 w-full">
+          
+          {/* USERNAME INPUT WITH ENFORCED INLINE INNER PADDING SHIFTS */}
           <input
             type="text"
             placeholder="USERNAME"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-            className="w-full h-16 sm:h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-xl sm:rounded-[25px] text-white text-xl sm:text-3xl font-black outline-none px-5 sm:px-8 placeholder:text-zinc-500 uppercase tracking-wide box-border"
+            style={{ 
+              paddingLeft: '32px', 
+              paddingRight: '32px',
+              boxSizing: 'border-box'
+            }}
+            className="w-full h-16 sm:h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-xl sm:rounded-[25px] text-white text-xl sm:text-3xl font-black outline-none placeholder:text-zinc-500 uppercase tracking-wide transition-all focus:border-yellow-400"
           />
 
-          {/* PASSWORD */}
+          {/* PASSWORD INPUT WITH ENFORCED INLINE INNER PADDING SHIFTS */}
           <input
             type="password"
             placeholder="PASSWORD"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-            className="w-full h-16 sm:h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-xl sm:rounded-[25px] text-white text-xl sm:text-3xl font-black outline-none px-5 sm:px-8 placeholder:text-zinc-500 uppercase tracking-wide box-border"
+            style={{ 
+              paddingLeft: '32px', 
+              paddingRight: '32px',
+              boxSizing: 'border-box'
+            }}
+            className="w-full h-16 sm:h-[95px] bg-black/70 border-[3px] border-yellow-400/80 rounded-xl sm:rounded-[25px] text-white text-xl sm:text-3xl font-black outline-none placeholder:text-zinc-500 uppercase tracking-wide transition-all focus:border-yellow-400"
           />
 
           {message && (
-            <div className="w-full bg-yellow-400/10 border border-yellow-400/20 rounded-xl py-2.5 px-4">
+            <div className="w-full bg-yellow-400/10 border border-yellow-400/20 rounded-xl py-3 px-4 mt-2">
               <p className="text-center text-yellow-400 font-black text-md sm:text-2xl tracking-wide">{message}</p>
             </div>
           )}
 
-          {/* SUBMIT */}
+          {/* SUBMIT BUTTON WITH EXTRA TOP MARGIN FOR GAP BALANCE */}
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full h-14 sm:h-[100px] flex items-center justify-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black text-xl sm:text-4xl font-black rounded-xl sm:rounded-[30px] border-[3px] border-yellow-200 hover:scale-[1.02] active:scale-[0.99] transition duration-300 tracking-widest uppercase shadow-[0_0_30px_rgba(255,215,0,0.4)] disabled:opacity-70 mt-2"
+            className="w-full h-14 sm:h-[100px] flex items-center justify-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 text-black text-xl sm:text-4xl font-black rounded-xl sm:rounded-[30px] border-[3px] border-yellow-200 hover:scale-[1.02] active:scale-[0.99] transition duration-300 tracking-widest uppercase shadow-[0_0_30px_rgba(255,215,0,0.4)] disabled:opacity-70 mt-4"
           >
             {loading ? "PLEASE WAIT..." : "LOGIN"}
           </button>
