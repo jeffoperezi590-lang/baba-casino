@@ -1,15 +1,20 @@
-const authRoutes = require("./routes/authRoutes")
 const express = require("express")
 const cors = require("cors")
 require("dotenv").config()
 
+const authRoutes = require("./routes/authRoutes")
 const connectDB = require("./config/db")
 
 const app = express()
 
 connectDB()
 
-app.use(cors())
+// 👑 CORS FIXED: Apne live domain ko securely allow karein
+app.use(cors({
+  origin: ["https://babacasino.online", "https://www.babacasino.online"],
+  credentials: true
+}))
+
 app.use(express.json())
 app.use("/api/auth", authRoutes)
 

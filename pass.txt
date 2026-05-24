@@ -1,0 +1,12 @@
+user: babaadmin
+pass: baba123
+
+
+
+
+{
+  "username": "ali",
+  "password": "12345",
+  "balance": 1000,
+  "level": 1
+}
