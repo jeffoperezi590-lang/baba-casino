@@ -1,60 +1,8 @@
-const User = require("../models/User")
+const express = require("express")
+const router = express.Router()
+const { loginUser } = require("../controllers/authController")
 
-const loginUser = async (req, res) => {
+// 👑 ROUTE PATH STRING FIXED (DO NOT ADD /api/auth HERE)
+router.post("/login", loginUser)
 
-  try {
-
-    let { username, password } = req.body
-
-    // REMOVE SPACES + MAKE LOWERCASE
-    username = username.trim().toLowerCase()
-    password = password.trim()
-
-    console.log("LOGIN USERNAME:", username)
-
-    // FIND USER
-    const user = await User.findOne({
-      username: username
-    })
-
-    console.log("FOUND USER:", user)
-
-    // USER NOT FOUND
-    if (!user) {
-
-      return res.status(400).json({
-        message: "User not found"
-      })
-
-    }
-
-    // PASSWORD CHECK
-    if (user.password !== password) {
-
-      return res.status(400).json({
-        message: "Invalid password"
-      })
-
-    }
-
-    // SUCCESS
-    res.status(200).json({
-      message: "Login successful",
-      user
-    })
-
-  } catch (error) {
-
-    console.log(error)
-
-    res.status(500).json({
-      message: "Server Error"
-    })
-
-  }
-
-}
-
-module.exports = {
-  loginUser
-}
+module.exports = router
