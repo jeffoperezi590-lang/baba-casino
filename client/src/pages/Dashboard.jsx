@@ -52,7 +52,7 @@ function Dashboard() {
     >
       <div className="absolute inset-0 bg-black/40 pointer-events-none z-0"></div>
 
-      {/* HEADER BAR */}
+      {/* 👑 FIXED UNIFIED HEADER BAR (MATCHED WITH INCOME PAGE) */}
       <header className="relative z-20 w-full bg-zinc-950/85 border-b border-zinc-800/60 backdrop-blur-xl py-3.5 flex items-center justify-between px-4 sm:px-10">
         <div className="flex items-center gap-2 sm:gap-3">
           <img src="/images/logo.png" alt="Baba Casino" className="h-7 sm:h-9 object-contain" onError={(e) => e.target.style.display = 'none'} />
@@ -67,43 +67,48 @@ function Dashboard() {
       {/* MAIN LAYOUT */}
       <main className="relative z-10 w-full flex-grow flex flex-col px-4 sm:px-10 pt-4 sm:pt-6">
 
-        {/* PROFILE BLOCK RESPONSIVE SYSTEM */}
-        <div className="w-full flex flex-col sm:flex-row justify-between items-center bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-2xl backdrop-blur-xl gap-4 sm:gap-0 mb-5 sm:mb-6">
-          <div className="flex items-center gap-3 sm:gap-5 self-start sm:self-center">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-yellow-500 via-amber-400 to-yellow-300 flex items-center justify-center text-black text-xl sm:text-3xl font-black shadow-[0_0_25px_rgba(245,158,11,0.3)]">
-              {user ? user.username?.charAt(0).toUpperCase() : "U"}
-            </div>
-            <div className="flex flex-col gap-0.5 sm:gap-1">
-              <h1 className="text-lg sm:text-2xl font-black tracking-wide uppercase text-zinc-100">
-                {user ? user.username : "Loading..."}
-              </h1>
-              <div>
-                <span className="bg-yellow-400/20 text-yellow-400 border border-yellow-400/40 text-[9px] sm:text-[10px] font-black px-2 sm:px-3 py-0.5 rounded tracking-widest">
-                  VIP MEMBER
-                </span>
+        {/* 👑 RE-CONFIGURED PROFILE BLOCK (BALANCE FIXED NEXT TO NAME ON MOBILE) */}
+        <div className="w-full bg-zinc-900/80 border border-zinc-800/70 rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-2xl backdrop-blur-xl mb-5 sm:mb-6">
+          <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
+            
+            {/* LEFT PROFILE GROUP */}
+            <div className="flex items-center gap-3 sm:gap-5">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-yellow-500 via-amber-400 to-yellow-300 flex items-center justify-center text-black text-xl sm:text-3xl font-black shadow-[0_0_25px_rgba(245,158,11,0.3)] shrink-0">
+                {user ? user.username?.charAt(0).toUpperCase() : "U"}
               </div>
-            </div>
-          </div>
-
-          {/* BALANCE BLOCK AND LOGOUT ROW MIXUPS FIXED */}
-          <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto border-t border-zinc-800/50 sm:border-none pt-3 sm:pt-0">
-            <div className="flex flex-col items-start gap-0.5">
-              <p className="text-zinc-400 text-[10px] sm:text-[11px] font-black tracking-widest uppercase pl-1">Total Balance</p>
-              <div className="bg-gradient-to-r from-yellow-500 to-amber-400 text-black px-4 sm:px-7 py-1.5 sm:py-2 rounded-xl text-xl sm:text-2xl font-black tracking-wider">
-                PKR {user ? user.balance?.toLocaleString() : "0"}
+              <div className="flex flex-col gap-0.5 sm:gap-1">
+                <h1 className="text-lg sm:text-2xl font-black tracking-wide uppercase text-zinc-100 leading-tight">
+                  {user ? user.username : "Loading..."}
+                </h1>
+                <div>
+                  <span className="bg-yellow-400/20 text-yellow-400 border border-yellow-400/40 text-[9px] sm:text-[10px] font-black px-2 sm:px-3 py-0.5 rounded tracking-widest uppercase">
+                    VIP MEMBER
+                  </span>
+                </div>
               </div>
             </div>
 
-            <button
-              onClick={handleLogout}
-              className="bg-zinc-950/80 hover:bg-rose-600/20 text-zinc-400 hover:text-rose-400 border border-zinc-800 hover:border-rose-500/40 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black tracking-widest uppercase transition-all duration-300 active:scale-95 shadow-md self-end"
-            >
-              Logout
-            </button>
+            {/* RIGHT BALANCE + ACTION GROUP (WRAP CONTROLLED FOR HORIZONTAL FLOW) */}
+            <div className="flex items-center justify-between sm:justify-end gap-4 border-t border-zinc-800/50 sm:border-none pt-3 sm:pt-0 w-full sm:w-auto">
+              <div className="flex flex-row sm:flex-col items-center sm:items-start gap-2 sm:gap-0.5">
+                <p className="text-zinc-400 text-[10px] sm:text-[11px] font-black tracking-widest uppercase sm:pl-1 shrink-0">Total Balance:</p>
+                <div className="bg-gradient-to-r from-yellow-500 to-amber-400 text-black px-3.5 sm:px-7 py-1 sm:py-2 rounded-xl text-md sm:text-2xl font-black tracking-wider shadow-md ml-1 sm:ml-0">
+                  PKR {user ? user.balance?.toLocaleString() : "0"}
+                </div>
+              </div>
+
+              <button
+                onClick={handleLogout}
+                className="bg-zinc-950/80 hover:bg-rose-600/20 text-zinc-400 hover:text-rose-400 border border-zinc-800 hover:border-rose-500/40 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black tracking-widest uppercase transition-all duration-300 active:scale-95 shadow-md h-fit"
+              >
+                Logout
+              </button>
+            </div>
+
           </div>
         </div>
 
-        {/* MID NAVBAR (FLUID SCALING SQUEEZES FOR TOUCH BOUNDS) */}
+        {/* MID NAVBAR (COMPRESSED SPACING PREVENTS WRAPPING OVERLAPS) */}
         <div className="w-full flex bg-zinc-950/90 border border-zinc-800/80 rounded-xl sm:rounded-2xl p-1 sm:p-2 shadow-2xl backdrop-blur-md mb-6 sm:mb-8">
           {["HOME", "INCOME", "WITHDRAW"].map((tab) => (
             <button
